@@ -22,5 +22,7 @@ namespace Padaria_Bread.Models
             builder.ApplyConfiguration(new ProdutoMap());
             builder.ApplyConfiguration(new VendaMap());
         }
+
+        public DbSet<Padaria_Bread.Models.Consultas.TotalCompras> TotalCompras { get; set; }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Padaria_Bread.Models.Consultas.TotalCompras>
+
+@{
+    ViewData["Title"] = "TotalCompras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/bg.css" />
+
+<h1 class="pt-4">Total de Compras por Produto</h1>
+
+<p class="pb-3">
+    &nbsp;
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.descProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalComprado)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalComprado)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

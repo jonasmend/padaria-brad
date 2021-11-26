@@ -22,8 +22,27 @@ namespace Padaria_Bread.Controllers
         }
 
         // GET: Vendas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewData["FilterByProduct"] = searchString;
+                var vendas = from venda in _context.Vendas
+                             join cliente in _context.Pacientes on venda.id_cliente equals cliente.id
+                             select new Venda
+                             {
+                                 id = venda.id,
+                                 produto = venda.produto,
+                                 cliente = venda.cliente,
+                                 quantidade = venda.quantidade,
+                                 valorProduto = venda.valorProduto,
+                                 valorVenda = venda.valorVenda
+                             };
+
+                vendas = vendas.Where(m => m.cliente.nome.Contains(searchString));
+
+                return View(await vendas.AsNoTracking().ToListAsync());
+            }
             var contexto = _context.Vendas.Include(v => v.cliente).Include(v => v.produto);
             return View(await contexto.ToListAsync());
         }
@@ -61,10 +80,14 @@ namespace Padaria_Bread.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,id_cliente,id_produto,quantidade,valorProduto,valorVenda")] Venda venda)
+        public async Task<IActionResult> Create([Bind("id,id_cliente,id_produto,quantidade")] Venda venda)
         {
+            var produto = await _context.Produtos.FindAsync(venda.id_produto);
             if (ModelState.IsValid)
             {
+                produto.estoque -= venda.quantidade;
+                venda.valorProduto = produto.preco;
+                venda.valorVenda = produto.preco * venda.quantidade;
                 _context.Add(venda);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

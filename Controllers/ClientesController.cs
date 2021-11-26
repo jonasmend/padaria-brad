@@ -22,8 +22,19 @@ namespace Padaria_Bread.Controllers
         }
 
         // GET: Clientes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewData["FilterByName"] = searchString;
+
+                var clientes = from cliente in _context.Pacientes
+                               select cliente;
+
+                clientes = clientes.Where(c => c.nome.Contains(searchString));
+
+                return View(await clientes.AsNoTracking().ToListAsync());
+            }
             return View(await _context.Pacientes.ToListAsync());
         }
 

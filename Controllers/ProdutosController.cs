@@ -22,8 +22,19 @@ namespace Padaria_Bread.Controllers
         }
 
         // GET: Produtos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewData["FilterByName"] = searchString;
+
+                var produtos = from produto in _context.Produtos
+                                select produto;
+
+                produtos = produtos.Where(p => p.descricao.Contains(searchString));
+
+                return View(await produtos.AsNoTracking().ToListAsync());
+            }
             return View(await _context.Produtos.ToListAsync());
         }
 
