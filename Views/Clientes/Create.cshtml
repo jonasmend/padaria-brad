@@ -1,0 +1,71 @@
+﻿@model Padaria_Bread.Models.Dominio.Cliente
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/bg.css" />
+
+<h1 class="pt-4">Create</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="data_nascimento" class="control-label"></label>
+                <input asp-for="data_nascimento" class="form-control" />
+                <span asp-validation-for="data_nascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cpf" class="control-label"></label>
+                <input asp-for="cpf" class="form-control" />
+                <span asp-validation-for="cpf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cep" class="control-label"></label>
+                <input asp-for="cep" class="form-control" />
+                <span asp-validation-for="cep" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="rua" class="control-label"></label>
+                <input asp-for="rua" class="form-control" />
+                <span asp-validation-for="rua" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numero" class="control-label"></label>
+                <input asp-for="numero" class="form-control" />
+                <span asp-validation-for="numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bairro" class="control-label"></label>
+                <input asp-for="bairro" class="form-control" />
+                <span asp-validation-for="bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="complemento" class="control-label"></label>
+                <input asp-for="complemento" class="form-control" />
+                <span asp-validation-for="complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

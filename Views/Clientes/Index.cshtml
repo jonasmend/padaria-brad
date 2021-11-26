@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Padaria_Bread.Models.Dominio.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/bg.css" />
+
+<h1 class="pt-4">Clientes</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_nascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cep)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rua)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.complemento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_nascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cep)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rua)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.complemento)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

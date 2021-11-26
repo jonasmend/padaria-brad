@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Padaria_Bread.Models.Dominio.Venda>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/bg.css" />
+
+<h1 class="pt-4">Vendas</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valorProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valorVenda)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cliente.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.produto.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorVenda)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
