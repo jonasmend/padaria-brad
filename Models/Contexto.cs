@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Padaria_Bread.Models.Consultas;
 
 namespace Padaria_Bread.Models
 {
@@ -24,5 +25,7 @@ namespace Padaria_Bread.Models
         }
 
         public DbSet<Padaria_Bread.Models.Consultas.TotalCompras> TotalCompras { get; set; }
+
+        public DbSet<Padaria_Bread.Models.Consultas.PivotCompras> PivotCompras { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Padaria_Brad.Extra
+namespace Padaria_Bread.Extra
 {
     public static class Funcoes
     {

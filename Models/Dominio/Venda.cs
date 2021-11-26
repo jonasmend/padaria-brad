@@ -28,10 +28,12 @@ namespace Padaria_Bread.Models.Dominio
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Valor do produto")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double valorProduto { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Valor da venda")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double valorVenda { get; set; }
     }
 }
