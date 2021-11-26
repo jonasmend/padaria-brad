@@ -178,6 +178,14 @@ namespace Padaria_Bread.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var venda = await _context.Vendas.FindAsync(id);
+
+            var produto = await _context.Produtos.FindAsync(venda.id_produto);
+            if (ModelState.IsValid)
+            {
+                produto.estoque += venda.quantidade;
+                
+            }
+            
             _context.Vendas.Remove(venda);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

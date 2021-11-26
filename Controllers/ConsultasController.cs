@@ -37,16 +37,11 @@ namespace Padaria_Bread.Controllers
                                                  orderby grupo.Key.descricao
                                                  select new ConsultaCompras
                                                  {
-                                                     //id = agendamento.id,
+                                                     
                                                          cliente = grupo.Key.nome,
                                                          cpf = grupo.Key.cpf,
                                                          produto = grupo.Key.descricao,
                                                          quantidade = grupo.Sum(p => p.quantidade)
-                                                     //especialidade = agendamento.medico.especialidade,
-                                                     //crm = agendamento.medico.crm,
-                                                     //dataRealizacao = agendamento.dataRealizacao,
-                                                     //dataAgendamento = agendamento.dataAgendamento,
-                                                     //status = Enum.GetName(typeof(AgendamentoStatus), agendamento.agendamentoStatus)
                                                  };
             return View(lista);
         }
@@ -61,11 +56,9 @@ namespace Padaria_Bread.Controllers
                                                     orderby grupo.Key.descricao
                                                     select new TotalCompras
                                                     {
-                                                        //descProduto = grupo.Key.descricao,
-                                                        //tipoMovimentacao = Enum.GetName(typeof(MovimentacaoTipo), grupo.Key.movTipo),
                                                         descProduto = grupo.Key.descricao,
                                                         totalComprado = grupo.Sum(p => p.quantidade)
-                                                        //totalProdutos = grupo.Sum(p => p.quantidade)
+                                                        
                                                     };
             return View(lista);
         }
