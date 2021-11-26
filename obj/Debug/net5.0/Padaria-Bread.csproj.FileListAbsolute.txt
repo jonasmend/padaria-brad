@@ -347,3 +347,4 @@ C:\Users\jonas\source\repos\Padaria-Bread\obj\Debug\net5.0\ref\Padaria-Bread.dll
 C:\Users\jonas\source\repos\Padaria-Bread\obj\Debug\net5.0\Padaria-Bread.pdb
 C:\Users\jonas\source\repos\Padaria-Bread\obj\Debug\net5.0\Padaria-Bread.genruntimeconfig.cache
 C:\Users\jonas\source\repos\Padaria-Bread\obj\Debug\net5.0\Razor\Views\Consultas\TotalCompras.cshtml.g.cs
+C:\Users\jonas\source\repos\Padaria-Bread\obj\Debug\net5.0\Razor\Views\Consultas\ConsultaCompras.cshtml.g.cs

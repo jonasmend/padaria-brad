@@ -24,6 +24,33 @@ namespace Padaria_Bread.Controllers
             contexto = context;
         }
 
+
+        public IActionResult ConsultaCompras()
+        {
+            IEnumerable<ConsultaCompras> lista = from compra in contexto.Vendas
+                                          .Include(p => p.cliente)
+                                          .Include(m => m.produto)
+                                          .ToList()
+                                                     //select new ConsultaCompras
+                                                 group compra by new { compra.produto.descricao, compra.cliente.nome, compra.cliente.cpf }
+                                                  into grupo
+                                                 orderby grupo.Key.descricao
+                                                 select new ConsultaCompras
+                                                 {
+                                                     //id = agendamento.id,
+                                                         cliente = grupo.Key.nome,
+                                                         cpf = grupo.Key.cpf,
+                                                         produto = grupo.Key.descricao,
+                                                         quantidade = grupo.Sum(p => p.quantidade)
+                                                     //especialidade = agendamento.medico.especialidade,
+                                                     //crm = agendamento.medico.crm,
+                                                     //dataRealizacao = agendamento.dataRealizacao,
+                                                     //dataAgendamento = agendamento.dataAgendamento,
+                                                     //status = Enum.GetName(typeof(AgendamentoStatus), agendamento.agendamentoStatus)
+                                                 };
+            return View(lista);
+        }
+
         public IActionResult TotalCompras()
         {
             IEnumerable<TotalCompras> lista = from venda in contexto.Vendas
